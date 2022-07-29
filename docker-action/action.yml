@@ -16,5 +16,4 @@ runs:
   # This variable will be defined inside the container
   env:
     DIRECTORY: ${{ inputs.directory }}
-  # This will pass the files as an array
   args: ${{ inputs.files }}
