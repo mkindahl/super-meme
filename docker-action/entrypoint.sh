@@ -3,7 +3,7 @@
 set -x
 
 echo "Arguments $@"
-( mkdir $DIRECTORY && cd $DIRECTORY && touch "$@" )
+( mkdir $DIRECTORY && cd $DIRECTORY && touch $* )
 env
 pwd
 ls -lR
