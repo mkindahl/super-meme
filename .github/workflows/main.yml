@@ -9,7 +9,8 @@ jobs:
         id: hello
         uses: mkindahl/super-meme/docker-action@v3
         with:
-          who-to-greet: 'Mona the Octocat'
+          directory: magic
+          files: one two three
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
       - name: Show files
