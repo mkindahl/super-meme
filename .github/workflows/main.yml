@@ -10,10 +10,7 @@ jobs:
         uses: mkindahl/super-meme/docker-action@v4
         with:
           directory: magic
-          files:
-            - one
-            - two
-            - three
+          files: one two three
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
       - name: Show files
