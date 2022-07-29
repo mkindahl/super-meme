@@ -13,7 +13,8 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  # This variable will be defined inside the container
   env:
     DIRECTORY: ${{ inputs.directory }}
-  args:
-    - ${{ inputs.files }}
+  # This will pass the files as an array
+  args: ${{ inputs.files }}
