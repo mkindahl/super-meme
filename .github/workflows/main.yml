@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: mkindahl/super-meme/docker-action@v4
+        uses: mkindahl/super-meme/docker-action@v5
         with:
           directory: magic
           files: one two three
