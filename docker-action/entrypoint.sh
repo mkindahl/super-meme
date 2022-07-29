@@ -1,6 +1,10 @@
 #!/bin/sh -l
 
-echo "Hello $1"
+set -x
+
+echo "Arguments $@"
+( mkdir $DIRECTORY && cd $DIRECTORY && touch "$@" )
+env
 pwd
 ls -lR
 time=$(date)

@@ -1,15 +1,19 @@
 name: Testing Docker GitHub Action
 description: Testing how Docker GitHub Actions work
 inputs:
-  who-to-greet:
-    description: 'Who to greet'
+  directory:
+    description: Directory to create
     required: true
-    default: 'World'
+  files:
+    description: Files to create in directory
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    DIRECTORY: ${{ inputs.directory }}
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.files }}
