@@ -2,9 +2,8 @@ on: [push]
 
 jobs:
   show_stuff:
-    name: Show stuff
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Moar stuff
     steps:
       - name: Hello world action step
         id: hello
