@@ -36,10 +36,10 @@ jobs:
           EOT
           echo "----"
           cat <<EOT
-          ${{ toJSON(github.event.issue.label) }}
+          ${{ toJSON(github.event.label) }}
           EOT
           echo "----"
           cat <<EOT
-          ${{ toJSON(github.event.issue.label.*.name) }}
+          ${{ toJSON(github.event.label.*.name) }}
           EOT
           
