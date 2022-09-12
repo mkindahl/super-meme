@@ -20,7 +20,7 @@ jobs:
 
   show-labels:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' and github.event.action == 'labeled'
+    if: github.event_name == 'issues' && github.event.action == 'labeled'
     steps:
       - name: Show labels
         run: echo '${{ github.event.action.issue.labels.*.name }}'
