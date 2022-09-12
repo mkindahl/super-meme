@@ -27,7 +27,18 @@ jobs:
     steps:
       - name: Show labels
         run: |
-          echo github.event.issue.label
+          cat <<EOT
+          ${{ toJSON(github.event) }}
+          EOT
+          echo "----"
+          cat <<EOT
+          ${{ toJSON(github.event.issue) }}
+          EOT
+          echo "----"
+          cat <<EOT
+          ${{ toJSON(github.event.issue.label) }}
+          EOT
+          echo "----"
           cat <<EOT
           ${{ toJSON(github.event.issue.label.*.name) }}
           EOT
