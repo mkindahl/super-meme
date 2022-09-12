@@ -17,4 +17,10 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
-    
+
+  show-labels:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' and github.event.action == 'labeled'
+    steps:
+      - name: Show labels
+        run: echo '${{ github.event.action.issue.labels.map(o => o.name) }}'
