@@ -6,7 +6,10 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: |
+          echo <<EOT
+          ${{ toJSON(github) }}
+          EOT
       - name: Dump job context
         run: echo '${{ toJSON(job) }}'
       - name: Dump steps context
@@ -20,7 +23,7 @@ jobs:
 
   show-labels:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' && github.event.action == 'labeled'
+    if: github.event_name == 'issues'
     steps:
       - name: Show labels
         run: echo '${{ toJSON(github.event.action.issue.labels.*.name) }}'
