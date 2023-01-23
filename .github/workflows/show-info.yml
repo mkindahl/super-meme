@@ -1,7 +1,34 @@
-on: [issues, issue_comment, push]
-
+name: Show information
+on:
+  issues:
+  issue_comment:
+  push:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 jobs:
   dump-variables:
+    name: Dump variables
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
@@ -11,9 +38,15 @@ jobs:
           ${{ toJSON(github) }}
           EOT
       - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
+        run: |
+          cat <<EOT
+          ${{ toJSON(job) }}
+          EOT
       - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
+        run: |
+          cat <<EOT
+          ${{ toJSON(steps) }}
+          EOT
       - name: Dump runner context
         run: echo '${{ toJSON(runner) }}'
       - name: Dump strategy context
@@ -40,6 +73,5 @@ jobs:
           EOT
           echo "----"
           cat <<EOT
-          ${{ toJSON(github.event.label.*.name) }}
+          ${{ toJSON(github.event.label.name) }}
           EOT
-          
