@@ -9,7 +9,7 @@ jobs:
         id: hello
         uses: mkindahl/super-meme/docker-action@v6
         with:
-          directory: magic
+          directory: tmp
           files: one two three
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
@@ -17,3 +17,19 @@ jobs:
         run: |
           pwd
           ls -lR
+
+  test_container:
+    runs-on: ubuntu-latest
+    container:
+      image: postgres:14
+    steps:
+      - run: uname -a
+      - run: ls /etc
+      - run: ls /usr/local/bin
+      - run: cat /etc/issue
+      - uses: actions/checkout@v3
+      - run: apt update && apt install -qy make gcc
+      - run: ls -lR
+      - run: cd src && make server client
+      - run: src/server 8832 &
+      - run: src/client localhost 8832 "Hello!"
