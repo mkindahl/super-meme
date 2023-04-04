@@ -8,4 +8,5 @@ COPY entrypoint.pl /entrypoint.pl
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["perl", "/entrypoint.pl"]
+CMD ["echo", "default", "parameters"]
 

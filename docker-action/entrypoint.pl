@@ -2,7 +2,7 @@
 use Cwd qw(cwd);
      
 print "Current working directory: ", cwd, "\n";
-print "Arguments @ARGV\n";
+print "Arguments: ", join(',', map { "'$_'" } @ARGV), "\n";
 print "Environment variables\n";
 print "$_=$ENV{$_}\n" for (keys %ENV);
 
