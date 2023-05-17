@@ -1,6 +1,6 @@
 #!/bin/perl
 use Cwd qw(cwd);
-     
+
 print "Current working directory: ", cwd, "\n";
 print "Arguments: ", join(',', map { "'$_'" } @ARGV), "\n";
 print "Environment variables\n";
@@ -18,7 +18,7 @@ for my $name (split(/ /, shift)) {
 	print "\$f = $f\n";
     }
     
-    die "\nUnable to create $dir/$name\n" unless open FILE, ">$dir/$name";
+    die "\nUnable to create $name\n" unless open FILE, ">$name";
     print FILE "This is $name\n";
     close FILE;
 }

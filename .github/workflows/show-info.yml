@@ -1,4 +1,11 @@
-on: [issues, issue_comment, push]
+on:
+  pull_request:
+    types: [opened, edited]
+  issues:
+    types: [opened, closed, edited]
+  issue_comment:
+    types: [created]
+  push:
 
 jobs:
   dump-variables:
@@ -20,6 +27,12 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      - name: Susceptible to injection
+        run: echo "${{ github.event.pull_request.body }}"
+      - name: Safe from injection
+        run: echo "$BODY"
+        env:
+          BODY: ${{ github.event.pull_request.body }}
 
   show-labels:
     runs-on: ubuntu-latest
@@ -42,4 +55,3 @@ jobs:
           cat <<EOT
           ${{ toJSON(github.event.label.*.name) }}
           EOT
-          
