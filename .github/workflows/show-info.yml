@@ -26,14 +26,14 @@ jobs:
       - name: Dump strategy context
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
+        if: always()
         run: echo '${{ toJSON(matrix) }}'
-      - name: Susceptible to injection
-        run: echo "${{ github.event.pull_request.body }}"
       - name: Safe from injection
+        if: always()
         run: echo "$BODY"
         env:
           BODY: ${{ github.event.pull_request.body }}
-
+          
   show-labels:
     runs-on: ubuntu-latest
     if: github.event_name == 'issues'
