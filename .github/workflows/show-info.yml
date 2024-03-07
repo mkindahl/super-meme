@@ -61,7 +61,7 @@ jobs:
     steps:
       - run: echo "Contains 'segfault'"
         if: >-
-          contains(github.event.issues.issue.labels.*.name, 'segfault')
+          contains(github.event.issue.labels.*.name, 'segfault')
     
       - run: echo "Event action is not closed"
         if: github.event.action != 'closed'
