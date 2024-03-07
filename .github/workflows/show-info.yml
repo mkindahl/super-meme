@@ -2,9 +2,9 @@ on:
   pull_request:
     types: [opened, edited]
   issues:
-    types: [opened, closed, edited]
+    types: [opened, closed, edited, labeled]
   issue_comment:
-    types: [created]
+    types: [created, edited]
   push:
 
 jobs:
@@ -55,3 +55,13 @@ jobs:
           cat <<EOT
           ${{ toJSON(github.event.label.*.name) }}
           EOT
+
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Contains 'segfault'"
+        if: >-
+          contains(github.event.issues.issue.labels.*.name, 'segfault')
+    
+      - run: echo "Event action is not closed"
+        if: github.event.action != 'closed'
